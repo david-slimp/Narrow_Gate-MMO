@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="main">
+      <div id="map-controls">
+        <div id="grid"></div>
+        <div id="map-overlay">
+          <div id="title-overlay">Narrow Gate</div>
+          <button id="sound-toggle" class="overlay-btn sound-toggle" onclick="toggleSound()">🔊</button>
+          <button class="overlay-btn up" onclick="move('up')">↑</button>
+          <button class="overlay-btn left" onclick="move('left')">←</button>
+          <button class="overlay-btn right" onclick="move('right')">→</button>
+          <button class="overlay-btn down" onclick="move('down')">↓</button>
+          <button class="overlay-btn center" onclick="drop('wall')">✙</button>
+        </div>
+      </div>
+      <div id="chat-container">
+        <div id="chat-window"></div>
+        <input id="chat-input" type="text" hidden />
+      </div>
+    </div>
+    <div id="stats"></div>
+  </div>
+  <div id="skin-customizer">
+    <label for="sprite-input">Custom Spritesheet:</label>
+    <input type="file" id="sprite-input" accept="image/png">
+  </div>
+  <script src="game.js"></script>
+  <div id="help-overlay" hidden>
+    <pre>Controls:
+Arrow keys: Move
+Space: Drop wall
+Tab: Chat focus
+Enter: Send chat
+Esc: Cancel chat / close help
+H: Toggle help</pre>
+  </div>
+  <div id="rate-limit-flash" hidden>Slow down</div>
+</body>
+</html>

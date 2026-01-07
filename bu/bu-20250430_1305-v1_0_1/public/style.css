@@ -1,0 +1,220 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+body { background-color: black; color: white; font-family: Arial, sans-serif; }
+h1 {
+  text-align: center;
+  margin: 10px 0;
+}
+#game-container {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+}
+#map-controls {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+#map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.overlay-btn {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.overlay-btn.up { top: 10px; left: 50%; transform: translateX(-50%); }
+.overlay-btn.down { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.overlay-btn.left { top: 50%; left: 10px; transform: translateY(-50%); }
+.overlay-btn.right { top: 50%; right: 10px; transform: translateY(-50%); }
+.overlay-btn.center { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+#grid {
+  display: grid;
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+}
+.cell {
+  border: 0;
+  text-align: center;
+  line-height: 1;
+}
+#controls {
+  margin-left: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#stats {
+  margin-top: 10px;
+  color: white;
+}
+.blocked-cell { background-color: black; color: white; }
+.unblocked-cell { background-color: black; color: white; }
+.gold-cell { background-color: black; color: #ffcc00; }
+.powerup-cell { background-color: black; color: #00cc00; }
+.lava-cell { background-color: #660000; color: #ff0000; }
+#help-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border: 1px solid white;
+  font-family: monospace;
+  z-index: 1000;
+  max-width: 200px;
+}
+#rate-limit-flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  color: white;
+  padding: 8px 16px;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 16px;
+  z-index: 1001;
+  text-align: center;
+}
+#verse-message {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(255,255,255,0.9);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  pointer-events: none;
+  animation: floatUp 9s ease-in forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-82.5vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* Faith pickup bubble */
+.faith-bubble {
+  position: absolute;
+  background-color: rgba(255,255,0,0.8);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  font-weight: bold;
+  white-space: nowrap;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+  animation: faithFloat 1s ease-out forwards;
+}
+
+@keyframes faithFloat {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50px);
+    opacity: 0;
+  }
+}
+
+/* Mobile-friendly control pad */
+#control-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+}
+.cp-row {
+  display: flex;
+  gap: 15px;
+}
+.cp-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2em;
+  margin: 5px;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  border: 1px solid #555;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .cp-btn {
+    width: 80px;
+    height: 80px;
+    font-size: 1.4em;
+  }
+}
+
+/* Sound toggle button */
+#sound-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 1000;
+  user-select: none;
+}
+
+/* Chat window constraint: limit to 6 lines */
+#chat-window {
+  max-height: 6em;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* Title overlay: upper-left within map */
+#title-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5em;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+  pointer-events: none;
+}

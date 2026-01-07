@@ -1,0 +1,166 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Darlantus Dungeon Crawler</title>
+        <style>
+            canvas {
+                border: 1px solid #000;
+            }
+        </style>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            canvas {
+                image-rendering: pixelated; /* Optional: makes the canvas look pixelated, which might suit your game's aesthetic */
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <script>
+            var canvas = document.getElementById('gameCanvas');
+            var ctx = canvas.getContext('2d');
+
+            // Game state initialization
+            var gameState = {
+                player: {x: 5, y: 5, health: 100, inventory: []},
+                level: 1,
+                map: generateMap(40, 30), // 40x30 map for example
+                items: generateItems(),
+                monsters: generateMonsters()
+            };
+
+            function generateMap(width, height) {
+                // Step 1: Initialize the map with walls
+                let map = new Array(height).fill(null).map(() => new Array(width).fill('#'));
+            
+                // Helper function to place a room
+                function placeRoom() {
+                    let roomWidth = Math.floor(Math.random() * 8) + 3; // 3 to 10
+                    let roomHeight = Math.floor(Math.random() * 8) + 3; // 3 to 10
+                    let roomX = Math.floor(Math.random() * (width - roomWidth));
+                    let roomY = Math.floor(Math.random() * (height - roomHeight));
+            
+                    for (let y = roomY; y < roomY + roomHeight; y++) {
+                        for (let x = roomX; x < roomX + roomWidth; x++) {
+                            map[y][x] = '.';
+                        }
+                    }
+                    return {x: roomX, y: roomY, width: roomWidth, height: roomHeight};
+                }
+            
+                // Step 2: Generate rooms
+                let rooms = [];
+                let numRooms = Math.floor(Math.random() * 6) + 5; // 5 to 10 rooms
+                for (let i = 0; i < numRooms; i++) {
+                    rooms.push(placeRoom());
+                }
+            
+                // Helper function to connect rooms with hallways
+                function connectRooms(room1, room2) {
+                    // Find center points of the rooms
+                    let center1 = {x: Math.floor(room1.x + room1.width / 2), y: Math.floor(room1.y + room1.height / 2)};
+                    let center2 = {x: Math.floor(room2.x + room2.width / 2), y: Math.floor(room2.y + room2.height / 2)};
+            
+                    // Connect with a horizontal hallway
+                    for (let x = Math.min(center1.x, center2.x); x <= Math.max(center1.x, center2.x); x++) {
+                        map[center1.y][x] = '.';
+                    }
+            
+                    // Connect with a vertical hallway
+                    for (let y = Math.min(center1.y, center2.y); y <= Math.max(center1.y, center2.y); y++) {
+                        map[y][center2.x] = '.';
+                    }
+                }
+            
+                // Step 3: Connect all rooms with hallways
+                for (let i = 0; i < rooms.length - 1; i++) {
+                    connectRooms(rooms[i], rooms[i + 1]);
+                }
+            
+                // Step 4: Place players in the first room
+                for (let i = 1; i <= 4; i++) { // Up to 4 players
+                    let room = rooms[0]; // Place all players in the first room for simplicity
+                    map[room.y + Math.floor(Math.random() * room.height)][room.x + Math.floor(Math.random() * room.width)] = i.toString();
+                }
+            
+                return map;
+            }
+
+            function generateItems() {
+                // Generate items randomly on the map
+            }
+
+            function generateMonsters() {
+                // Populate the map with monsters
+            }
+
+            function gameLoop() {
+                updateGameState();
+                renderGameState();
+                requestAnimationFrame(gameLoop);
+            }
+
+            function updateGameState() {
+                // Update player position based on input
+                // Reveal map as player moves
+                // Check for item pickups
+                // Move monsters and handle combat
+            }
+
+            function renderGameState() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+            
+                const tileSize = 10; // Size of each tile in pixels
+            
+                for (let y = 0; y < gameState.map.length; y++) {
+                    for (let x = 0; x < gameState.map[y].length; x++) {
+                        switch (gameState.map[y][x]) {
+                            case '#': // Wall
+                                ctx.fillStyle = 'white';
+                                ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                                break;
+                            case '.': // Floor
+                                ctx.fillStyle = 'white';
+                                ctx.fillText('.', x * tileSize + tileSize / 2, y * tileSize + tileSize / 2);
+                                break;
+                            default: // Players and other entities
+                                ctx.fillStyle = 'white';
+                                ctx.fillText(gameState.map[y][x], x * tileSize + tileSize / 2, y * tileSize + tileSize / 2);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            document.addEventListener('keydown', function(event) {
+                const player = gameState.players[0]; // Assuming player 1 is at index 0
+                switch (event.key) {
+                    case "ArrowUp":
+                        player.y -= 1; // Move player up
+                        break;
+                    case "ArrowDown":
+                        player.y += 1; // Move player down
+                        break;
+                    case "ArrowLeft":
+                        player.x -= 1; // Move player left
+                        break;
+                    case "ArrowRight":
+                        player.x += 1; // Move player right
+                        break;
+                }
+                renderGameState(); // Re-render the game state to reflect the player's new position
+                event.preventDefault(); // Prevent the default action (scrolling) of arrow keys
+            });
+
+            gameLoop(); // Start the game loop
+        </script>
+    </body>
+    </html>
