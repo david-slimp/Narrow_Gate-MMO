@@ -1,0 +1,38 @@
+body {
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+#game {
+    background-color: #f0f0f0;
+    border: 2px solid #000;
+    width: 600px;
+    height: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#stats {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 20px auto;
+    width: 300px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+#stats p {
+    margin: 5px 0;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    #game, #stats {
+        width: 90%;
+    }
+}

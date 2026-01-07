@@ -1,0 +1,6 @@
+name: "Narrow Gate MMO",
+path: "Narrow_Gate-MMO/",
+thumb: "Narrow_Gate-MMO/narrow_gate-thumb-01.png",
+version: "1.0.3",
+desc: "Multi-player Rogue-like Christian-based maze crawler",
+modified: ""

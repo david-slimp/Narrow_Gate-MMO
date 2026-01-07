@@ -1,0 +1,73 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+body { background-color: black; color: white; font-family: Arial, sans-serif; }
+#game-container {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+}
+#map-controls {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+#grid {
+  display: grid;
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+}
+.cell {
+  border: 0;
+  text-align: center;
+  line-height: 1;
+}
+#controls {
+  margin-left: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#stats {
+  margin-top: 10px;
+  color: white;
+}
+.blocked-cell { background-color: black; color: white; }
+.unblocked-cell { background-color: black; color: white; }
+.gold-cell { background-color: black; color: #ffcc00; }
+.powerup-cell { background-color: black; color: #00cc00; }
+.lava-cell { background-color: #660000; color: #ff0000; }
+#help-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border: 1px solid white;
+  font-family: monospace;
+  z-index: 1000;
+  max-width: 200px;
+}
+#rate-limit-flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  color: white;
+  padding: 8px 16px;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-size: 16px;
+  z-index: 1001;
+  text-align: center;
+}

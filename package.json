@@ -1,0 +1,26 @@
+{
+  "name": "narrow-gate-mmo",
+  "version": "1.0.3",
+  "description": "A Christian-based rogue-like MMO game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "build": "vite build && cp public/meta.txt dist/meta.txt",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "deploy:prod": "bash src/scripts/deploy.sh"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
+    "vite": "^7.3.0"
+  }
+}

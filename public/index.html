@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <title>MFC - Narrow Gate</title>
+</head>
+<body>
+  <div id="game-container"> <!-- game container -->
+    <div id="main"> <!-- main game area -->
+      <div id="map-controls"> <!-- map controls -->
+        <div id="grid"></div>
+        <div id="map-overlay">
+          <div id="title-overlay">Narrow Gate</div>
+          <!-- <button id="sound-toggle" class="overlay-btn sound-toggle" onclick="toggleSound()">🔊</button> -->
+          <button id="sound-toggle" class="overlay-btn sound-toggle" onclick="toggleSound()">
+            <img class="sound-icon" src="gfx/speaker_on.svg" alt="Sound on">
+          </button>
+          <button class="overlay-btn up" onclick="move('up')">↑</button>
+          <button class="overlay-btn left" onclick="move('left')">←</button>
+          <button class="overlay-btn right" onclick="move('right')">→</button>
+          <button class="overlay-btn down" onclick="move('down')">↓</button>
+          <button class="overlay-btn center" onclick="drop()">✙</button>
+        </div>
+      </div>
+      
+
+      <div id="chat-container"> <!-- Start container -->
+        <div id="chat-window"> <!-- Start window -->
+          <!-- Chat messages would typically be added here by JS -->
+        </div> <!-- End window -->
+        <input id="chat-input" type="text" hidden /> <!-- Input field after the window -->
+      </div> <!-- End container -->
+      
+      <div id="stats"></div>
+          
+    </div>
+    <!-- #stats div moved inside #main -->
+  </div> <!-- game container -->
+  <div id="skin-customizer">
+    <label for="sprite-input">Custom Spritesheet:</label>
+    <input type="file" id="sprite-input" accept="image/png">
+  </div> <!-- skin customizer -->
+  <script src="game.js"></script>
+  <div id="help-overlay" hidden>
+    <pre>Controls:
+Arrow keys: move
+Space: drop wall
+Tab: chat focus
+Enter: send chat
+Esc: cancel chat
+C: change Character
+H: toggle Help
+M: toggle Mute
+Q: Quit / save / logout
+</pre>
+  </div> <!-- help overlay -->
+  <div id="rate-limit-flash" hidden>Slow down</div>
+</body>
+</html>
