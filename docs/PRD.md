@@ -82,6 +82,7 @@ Create a small, approachable MMO experience that blends roguelike exploration wi
 ## 11. Deployment
 This project is intended to be self-hosted. Anyone can download the source and run the server locally or deploy it to their own Linux host.
 General deployment notes:
+- GitHub repository: https://github.com/david-slimp/Narrow_Gate-MMO.git
 - The server is started with `npm start` and serves both the web client and WebSocket endpoint.
 - The default port is `26472`, configurable via `narrow_gate.conf` or environment.
 - Static client assets are served from `public/`.
@@ -108,6 +109,7 @@ General deployment notes:
 - File-based persistence can get messy at scale without a data directory.
 - Single-port dev server conflicts with Vite dev port unless refactored.
 - Dependency security updates should be monitored regularly.
+- Always update `CHANGELOG.md` after every change; do not remove lines from prior version headings.
 
 ## 14. Success Metrics
 - Stable multiplayer sessions without crashes.

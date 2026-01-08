@@ -13,9 +13,20 @@ fi
 echo "🔨 Building production version..."
 NODE_OPTIONS=--max-old-space-size=4096 npm run build
 
-# Deploy using rsync
-echo "🚀 Deploying files to production server..."
-rsync -avz --progress --delete dist/ ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}
+# Deploy using rsync (server-side files only)
+echo "🚀 Deploying server files to production server..."
+rsync -avz --progress \
+    favicon-fullSize.png \
+    monsters.conf \
+    narrow_gate.conf \
+    package.json \
+    package-lock.json \
+    public \
+    server.js \
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}
+
+echo "📦 Installing production dependencies on server..."
+ssh ${DEPLOY_USER}@${DEPLOY_SERVER} "cd ${DEPLOY_PATH} && npm ci --omit=dev"
 
 echo "✅ Deployment complete!"
 echo "🌐 Visit: http://MinistriesForChrist.net:26472/"
