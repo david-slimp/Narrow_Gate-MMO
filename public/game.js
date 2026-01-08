@@ -86,6 +86,11 @@ ws.onmessage = event => {
     spriteMapping = data.mapping;
     // Check if initial render can happen now
     checkAndPerformInitialRender();
+  } else if (data.type === 'version') {
+    const versionEl = document.getElementById('version-overlay');
+    if (versionEl && typeof data.version === 'string') {
+      versionEl.textContent = `v${data.version}`;
+    }
   }
 };
 

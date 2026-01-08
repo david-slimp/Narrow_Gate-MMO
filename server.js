@@ -7,7 +7,13 @@ const path = require('path');
 const WebSocket = require('ws');
 const fs = require('fs');
 
-const VERSION = '1.0.3';
+let VERSION = '0.0.0';
+try {
+  const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'));
+  if (pkg && typeof pkg.version === 'string') VERSION = pkg.version;
+} catch (err) {
+  console.warn(`[Config] Failed to read package.json version: ${err.message}`);
+}
 
 // initial debug level; may be overridden by config
 let DEBUG = 7;
@@ -508,6 +514,7 @@ wss.on('connection', (ws, req) => {
     };
 
     ws.send(JSON.stringify({ type: 'assign', player: getPlayerStateForClient(players[playerId]) }));
+    ws.send(JSON.stringify({ type: 'version', version: VERSION }));
     // send viewport-only update
     sendView(ws, 'update');
     ws.send(JSON.stringify({ type: 'chatHistory', history: chatHistory }));

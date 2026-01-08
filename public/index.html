@@ -13,6 +13,7 @@
         <div id="grid"></div>
         <div id="map-overlay">
           <div id="title-overlay">Narrow Gate</div>
+          <div id="version-overlay"></div>
           <!-- <button id="sound-toggle" class="overlay-btn sound-toggle" onclick="toggleSound()">🔊</button> -->
           <button id="sound-toggle" class="overlay-btn sound-toggle" onclick="toggleSound()">
             <img class="sound-icon" src="gfx/speaker_on.svg" alt="Sound on">
@@ -42,7 +43,7 @@
     <label for="sprite-input">Custom Spritesheet:</label>
     <input type="file" id="sprite-input" accept="image/png">
   </div> <!-- skin customizer -->
-  <script src="game.js"></script>
+  <script type="module" src="game.js"></script>
   <div id="help-overlay" hidden>
     <pre>Controls:
 Arrow keys: move

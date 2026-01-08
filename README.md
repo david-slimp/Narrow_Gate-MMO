@@ -5,6 +5,7 @@ and every doorway leads higher into the unknown. Narrow Gate MMO is a Christian-
 themed rogue-like adventure you can play instantly in your browser.
 
 Live demo: http://MinistriesForChrist.net:26472/
+GitHub: https://github.com/david-slimp/Narrow_Gate-MMO.git
 
 <img src="narrow_gate-thumb-01.png" alt="Narrow Gate MMO gameplay screenshot" width="420">
 
@@ -17,6 +18,7 @@ Contact: David Slimp (rock808@David-Slimp.com)
 - Built for quick play sessions with surprising depth
 - Faith-themed challenges, verses, and progression
 - No download required for the web client
+
 
 ---
 

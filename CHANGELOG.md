@@ -1,16 +1,15 @@
 # Changelog
 
-## [1.1.0] - UPCOMING
-- TODO for this version:
--- Break in to modules
-Example Structure (Server-side):
-- server.js (Main entry point: Sets up WS server, basic connections)
-- config.js (Constants, monster types, etc.)
-- utils.js (Generic helper functions)
-- area_manager.js (loadArea, saveArea, generateGrid, etc.)
-- player_manager.js (Handle connection, quit, player data)
-- monster_manager.js (moveMonsters, doMonsterMove)
-- websocket_handlers.js (Handles specific message types like 'move', 'place')
+## [1.0.4] - In progress
+### Added
+- Display server version under the title overlay.
+### Changed
+- Server reads version from `package.json` at startup and sends it on connect.
+- Deploy now runs `npm ci --omit=dev` on the production server after rsync.
+- CHANGELOG.md should always use YYYY-MM-DD date format
+- Switched `public/index.html` script tag to `type="module"` to silence Vite warnings.
+### Fixed
+- Deploy now preserves the `public/` directory so the server can serve `index.html`.
 
 ## [1.0.3] - 2025-05-03
 - Added 'doors' to get to different maps (forwards and backwards - maybe like UP and DOWN?) - Persistent "Area" maps once players enter them, and saved as "Area00001.map", etc -- Players need to have their own areas loaded as they could be in different areas at the same time. -- After an area is exited by all players, it should be unloaded from memory/cache.  Sprite at 2x,2y is the "advancing"/"upward" door, and the sprite at 1x,2y is the "backward"/"downward" door.
